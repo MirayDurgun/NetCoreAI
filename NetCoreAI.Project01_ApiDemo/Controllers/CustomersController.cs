@@ -43,5 +43,21 @@ namespace NetCoreAI.Project01_ApiDemo.Controllers
             _context.SaveChanges();
             return Ok("Müşteri silme işlemi başarılı");
         }
+
+        [HttpGet("GetCustomer")]
+        public IActionResult GetCustomer(int id)
+        {
+            var value = _context.Customers.Find(id);
+            return Ok(value);
+
+        }
+
+        [HttpPut]
+        public IActionResult UpdateCustomer(Customer customer)
+        {
+            _context.Customers.Update(customer);
+            _context.SaveChanges();
+            return Ok("Müşteri bilgileri başarıyla güncellendi");
+        }
     }
 }
