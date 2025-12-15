@@ -30,5 +30,10 @@ namespace NetCoreAI.Project2_ApiConsumeUI.Controllers
             }
             return View();
         }
+        [HttpGet]
+        public IActionResult CreateCustomer()
+        {
+            return View();
+        }
     }
 }
