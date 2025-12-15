@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NetCoreAI.Project01_ApiDemo.Context;
+using NetCoreAI.Project1_ApiDemo.Context;
 
 #nullable disable
 

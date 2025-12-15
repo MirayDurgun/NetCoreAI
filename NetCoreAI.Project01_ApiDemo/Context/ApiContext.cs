@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NetCoreAI.Project01_ApiDemo.Entities;
+using NetCoreAI.Project1_ApiDemo.Entities;
 using System.Runtime.ConstrainedExecution;
 
-namespace NetCoreAI.Project01_ApiDemo.Context
+namespace NetCoreAI.Project1_ApiDemo.Context
 {
     public class ApiContext : DbContext
     {

@@ -1,4 +1,4 @@
-using NetCoreAI.Project01_ApiDemo.Context;
+using NetCoreAI.Project1_ApiDemo.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
