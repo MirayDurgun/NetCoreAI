@@ -69,5 +69,19 @@ namespace NetCoreAI.Project2_ApiConsumeUI.Controllers
             }
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateCustomer(UpdateCustomerDto updateCustomerDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(updateCustomerDto);
+            StringContent stringContent = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json");
+            var responseMessage = await client.PutAsync("https://localhost:44344/api/Customers", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("CustomerList");
+            }
+            return View();
+        }
     }
 }

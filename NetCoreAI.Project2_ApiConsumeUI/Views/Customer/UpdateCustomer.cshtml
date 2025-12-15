@@ -1,15 +1,24 @@
-﻿
+﻿@model NetCoreAI.Project2_ApiConsumeUI.Dtos.GetByIdCustomerDto
+
 @{
     Layout = null;
 }
 
-<!DOCTYPE html>
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>UpdateCustomer</title>
-</head>
-<body>
-</body>
-</html>
+<form method="post">
+    <div class="container">
+        <br /><br />
+        <input type="hidden" asp-for="CustomerId" />
+        <label>Müşteri Adı</label>
+        <input type="text" asp-for="CustomerName" class="form-control" />
+        <br />
+        <label>Müşteri Soyadı</label>
+        <input type="text" asp-for="CustomerSurname" class="form-control" />
+        <br />
+        <label>Müşteri Bakiye</label>
+        <input type="text" asp-for="CustomerBalance" class="form-control" />
+        <br />
+        <button class="btn btn-dark">Müşteri Güncelle</button>
+    </div>
+</form>
