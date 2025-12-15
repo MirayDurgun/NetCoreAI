@@ -44,5 +44,30 @@ namespace NetCoreAI.Project2_ApiConsumeUI.Controllers
             }
             return View();
         }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteCustomer(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.DeleteAsync($"https://localhost:44344/api/Customers/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("CustomerList");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateCustomer(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:44344/api/Customers/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var value = JsonConvert.DeserializeObject<UpdateCustomerDto>(jsonData);
+                return View(value);
+            }
+            return View();
+        }
     }
 }
