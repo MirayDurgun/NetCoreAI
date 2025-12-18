@@ -5,9 +5,9 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        var apiKey = "api key";
+        var apiKey = "AIzaSyDTxn8SKGGLkxY25pIP2W6uthueqw6K-vE";
 
-        Console.WriteLine("Merhaba, size nasıl yarımcı olabilirim?");
+        Console.WriteLine("Merhaba, nasıl yarımcı olabilirim?");
 
         var prompt = Console.ReadLine();
 
@@ -33,7 +33,7 @@ class Program
         try
         {
             //veriyi belirtilen adrese gönderir ve yanıt bekler
-            var response = await httpClient.PostAsync("https.//api.openai.com/v1/chat/completions", content);
+            var response = await httpClient.PostAsync("https://api.openai.com/v1/chat/completions", content);
 
             //gelen yanıtı string formatında oku
             var responseString = await response.Content.ReadAsStringAsync();
@@ -50,7 +50,7 @@ class Program
                 // Biz sadece yapay zekanın yazdığı mesajı ayıklamak için bu yolu izliyoruz.
                 var answer = result.GetProperty("choices")[0].GetProperty("message").GetProperty("content").GetString();
 
-                Console.WriteLine("OpenAI: " + answer);
+                Console.WriteLine("\n OpenAI: " + answer);
 
             }
             else
