@@ -22,7 +22,7 @@ using (var response = await client.SendAsync(request))
     var body = await response.Content.ReadAsStringAsync();
     apiSeriesViewModels = JsonConvert.DeserializeObject<List<ApiSeriesViewModel>>(body);
     foreach (var series in apiSeriesViewModels)
-    { Console.WriteLine(series); }
+    { Console.WriteLine("Film Adı" + series.title + "Film Puanı" + series.rating + "-" + series.rank + "Yıl" + series.year); }
 }
 
 Console.ReadLine();

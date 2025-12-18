@@ -19,7 +19,7 @@ namespace NetCoreAI.Project2_ApiConsumeUI.Controllers
         public async Task<IActionResult> CustomerList()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44344/api/Customers");
+            var responseMessage = await client.GetAsync("https://localhost:7207/api/Customers");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -37,18 +37,18 @@ namespace NetCoreAI.Project2_ApiConsumeUI.Controllers
             var jsonData = JsonConvert.SerializeObject(createCustomerDto);
             //serialize: Gelen stringi json formatına çevirir
             StringContent stringContent = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:44344/api/Customers", stringContent);
+            var responseMessage = await client.PostAsync("https://localhost:7207/api/Customers", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("CustomerList");
             }
             return View();
         }
-        [HttpDelete]
+
         public async Task<IActionResult> DeleteCustomer(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:44344/api/Customers/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7207/api/Customers?id="+id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("CustomerList");
@@ -60,11 +60,11 @@ namespace NetCoreAI.Project2_ApiConsumeUI.Controllers
         public async Task<IActionResult> UpdateCustomer(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:44344/api/Customers/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7207/api/Customers/GetCustomer?id="+ id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var value = JsonConvert.DeserializeObject<UpdateCustomerDto>(jsonData);
+                var value = JsonConvert.DeserializeObject<GetByIdCustomerDto>(jsonData);
                 return View(value);
             }
             return View();
@@ -76,7 +76,7 @@ namespace NetCoreAI.Project2_ApiConsumeUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateCustomerDto);
             StringContent stringContent = new StringContent(jsonData, System.Text.Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:44344/api/Customers", stringContent);
+            var responseMessage = await client.PutAsync("https://localhost:7207/api/Customers", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("CustomerList");
