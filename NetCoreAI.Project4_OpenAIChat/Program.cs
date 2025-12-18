@@ -6,7 +6,7 @@ class Program
     static async Task Main(string[] args)
     {
 
-        var apiKey = "token";//ll
+        var apiKey = "token";
 
 
         Console.WriteLine("Merhaba, nasıl yarımcı olabilirim?");
