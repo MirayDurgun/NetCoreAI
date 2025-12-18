@@ -5,7 +5,7 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        var apiKey = "AIzaSyDTxn8SKGGLkxY25pIP2W6uthueqw6K-vE";
+        var apiKey = "Token";
 
         Console.WriteLine("Merhaba, nasıl yarımcı olabilirim?");
 
