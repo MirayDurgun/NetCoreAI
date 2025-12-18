@@ -26,7 +26,7 @@ class Program
                 new {role="system", content="You are a helpful assistant."}, //sistem mesajı, yapay zekanın davranışını belirler
                 new {role="user",content =prompt} //kullanıcı mesajı, kullanıcının girdiği metin
             },
-            max_tokens = 100 //Cevabın uzunluğunu sınırlar; maliyet ve performans kontrolü için
+            max_tokens = 300 //Cevabın uzunluğunu sınırlar; maliyet ve performans kontrolü için
         };
 
         var json = JsonSerializer.Serialize(requestBody); //istek gövdesini JSON formatına dönüştürme
