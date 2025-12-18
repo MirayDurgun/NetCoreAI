@@ -5,7 +5,7 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        var apiKey = "key";
+        var apiKey = "KEY";
 
         // İşlenecek ses dosyasının yolu
         var audioFilePath = "sarzamanimizigeriye.mp3";
