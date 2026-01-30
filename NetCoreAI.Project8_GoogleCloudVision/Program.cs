@@ -15,23 +15,44 @@ Yerel OCR = Tesseract
 Bulut + AI + yüksek doğruluk = Google Cloud Vision
 */
 
+using Google.Cloud.Vision.V1;
+
 class program
 {
     static void Main(string[] args)
     {
         Console.WriteLine("Görsel yolu giriniz: ");
-        Console.WriteLine();
         string imagePath = Console.ReadLine();
-        string credentialPath = @"jason doyası";
-        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", credentialPath) ;
-
+        Console.WriteLine();
+        string credentialPath = @"json doyası";
+        // Google Cloud API kimlik doğrulama dosyasının yolu
+        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", credentialPath);
+        // Google Cloud kütüphanelerinin kimlik doğrulama için bu ortam değişkenini kullanması gerekir
         try
         {
-            var client=ImageAnnatatorClient
-        }
-        catch (Exception)
-        {
+            var client = ImageAnnotatorClient.Create();
+            //Google Cloud Vision istemcisi oluşturuluyor. Bu istemci API ile iletişim kurar. JSON kimlik doğrulama dosyası okunur
 
+            var image = Image.FromFile(imagePath);
+            //Görseli dosya yolundan belleğe yüklüyor
+            var response = client.DetectText(image);
+            //Görsel üzerindeki metinleri algılar ve okur. OCR işlemi yapılır. 
+            Console.WriteLine("Görseldeki metin: ");
+            Console.WriteLine();
+
+            foreach (var annotation in response)
+            {
+                //Algılanan her metin parçası için döngü
+                if (!string.IsNullOrEmpty(annotation.Description))
+                {
+                    //Boş olmayan metin parçalarını ekrana yazdır
+                    Console.WriteLine(annotation.Description);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Bir hata oluştu : {ex.Message}");
             throw;
         }
     }
